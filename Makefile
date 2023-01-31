@@ -4,7 +4,7 @@ SRC=src
 OBJ=obj
 BINDIR=bin
 SRCS=$(wildcard $(SRC)/*c) 
-OBJS=$(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SRCS))
+OBJS=$(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SRCS)) $(wildcard ../datastructurelib/obj/*.o)
 
 TEST=tests
 TESTS=$(wildcard $(TEST)/*.c)
@@ -18,7 +18,7 @@ release: CFLAGS=-Wall -O2 -DNDEBUG
 release: clean
 release: $(BIN)
 
-$(BIN): $(OBJS)
+$(BIN): $(OBJS) 
 	$(CC) $(CFLAGS) $^ -o $@
 
 $(OBJ)/%.o: $(SRC)/%.c
